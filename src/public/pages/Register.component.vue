@@ -1,35 +1,38 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 
 const router = useRouter();
 
 const username = ref('');
 const password = ref('');
+const confirmPassword = ref('');
 
-const loginUser = () => {
-  const storedUser = JSON.parse(localStorage.getItem('user'));
-  if (storedUser && storedUser.username === username.value && storedUser.password === password.value) {
-    alert("Inicio de sesión exitoso");
-    router.push('/movies');
-  } else {
-    alert("Nombre de usuario o contraseña incorrectos");
+const registerUser = () => {
+  if (password.value !== confirmPassword.value) {
+    alert("Las contraseñas no coinciden");
+    return;
   }
-};
 
-const navigateToRegister = () => {
-  router.push('/register');
+  const user = {
+    username: username.value,
+    password: password.value,
+  };
+
+  localStorage.setItem('user', JSON.stringify(user));
+  alert("Registro exitoso");
+  router.push('/login');
 };
 </script>
 
 <template>
-  <div class="login-container">
+  <div class="register-container">
     <header>
       <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="logo">
     </header>
-    <div class="login-box">
-      <h1>cineplanet</h1>
-      <form @submit.prevent="loginUser">
+    <div class="register-box">
+      <h1>Registro</h1>
+      <form @submit.prevent="registerUser">
         <div class="input-group">
           <label for="username">Username</label>
           <input id="username" v-model="username" type="text" placeholder="Enter your username" required>
@@ -38,15 +41,19 @@ const navigateToRegister = () => {
           <label for="password">Password</label>
           <input id="password" v-model="password" type="password" placeholder="Enter your password" required>
         </div>
-        <button type="submit">Login</button>
+        <div class="input-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input id="confirmPassword" v-model="confirmPassword" type="password" placeholder="Confirm your password"
+                 required>
+        </div>
+        <button type="submit">Register</button>
       </form>
-      <button @click="navigateToRegister" class="register-button">Registrarse</button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.login-container {
+.register-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,7 +74,7 @@ header {
   max-width: 200px;
 }
 
-.login-box {
+.register-box {
   background-color: white;
   padding: 40px 60px;
   border-radius: 10px;
@@ -77,7 +84,7 @@ header {
   width: 100%;
 }
 
-.login-box h1 {
+.register-box h1 {
   margin-bottom: 30px;
   font-size: 2.5em;
   color: #042c63;
@@ -119,5 +126,3 @@ button:hover {
   background-color: #FF4500;
 }
 </style>
-
-
