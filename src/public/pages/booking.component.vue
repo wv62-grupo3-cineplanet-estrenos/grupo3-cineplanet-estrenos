@@ -47,6 +47,7 @@ const navigateToMovies = () => {
   </div>
 </template>
 
+
 <style scoped>
 .booking-container {
   display: flex;
@@ -92,7 +93,7 @@ footer img {
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(169, 225, 220, 0.71);
 }
 
 .form-group {
@@ -109,6 +110,24 @@ footer img {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+button {
+  background-color: rgba(132, 170, 227, 0.68); /* Color de fondo azul */
+  color: #000000; /* Color del texto blanco */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: rgba(43, 163, 184, 0.76); /* Color de fondo azul oscuro al pasar el ratón */
+}
+
+button:focus {
+  outline: none;
 }
 
 .form-actions {

@@ -25,10 +25,10 @@ const navigateToRegister = () => {
 <template>
   <div class="login-container">
     <header>
-      <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="logo">
+      <img src="C:\Users\Racso\Documents\GitHub\grupo3-cineplanet-estrenos\src\public\imagen\imagen_logo.jpg" alt="Cineplanet logo" class="logo">
     </header>
     <div class="login-box">
-      <h1>cineplanet</h1>
+      <h1>Cineplanet</h1>
       <form @submit.prevent="loginUser">
         <div class="input-group">
           <label for="username">Nombre de usuario</label>
