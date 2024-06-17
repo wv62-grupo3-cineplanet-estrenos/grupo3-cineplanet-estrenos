@@ -33,11 +33,11 @@ const navigateToMovies = () => {
           <label for="dni">Confirma su DNI</label>
           <input type="text" id="dni" v-model="dni" placeholder="XXXXXXXXX">
         </div>
-        <button type="button">Better Options</button>
-        <button type="button">Preference Options</button>
+        <pv-button type="button">Better Options</pv-button>
+        <pv-button type="button">Preference Options</pv-button>
         <div class="form-actions">
-          <button type="submit">Confirm</button>
-          <button type="button" @click="navigateToMovies">Back</button>
+          <pv-button type="submit">Confirm</pv-button>
+          <pv-button type="button" @click="navigateToMovies">Back</pv-button>
         </div>
       </form>
     </div>
