@@ -40,7 +40,7 @@ export default {
 
 <template>
 
-  <header>
+  <header style="margin-bottom: 5%">
     <h1>Cineplanet</h1>
     <p>Bienvenido a la reserva rapida de pelicula</p>
     <button type="button" @click="navigateToLogin" style="color:white">salir</button>
@@ -73,6 +73,10 @@ export default {
       </form>
     </div>
   </div>
+
+  <footer style="padding-top: 5% ">
+    <img src="../../public/imagen/final_pagina.png" alt="Footer image" width="100%">
+  </footer>
 </template>
 
 <style>
