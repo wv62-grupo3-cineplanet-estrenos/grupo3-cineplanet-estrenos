@@ -1,30 +1,3 @@
-<script setup>
-import {ref} from 'vue';
-import {useRouter} from 'vue-router';
-
-const router = useRouter();
-
-const username = ref('');
-const password = ref('');
-const confirmPassword = ref('');
-
-const registerUser = () => {
-  if (password.value !== confirmPassword.value) {
-    alert("Las contraseñas no coinciden");
-    return;
-  }
-
-  const user = {
-    username: username.value,
-    password: password.value,
-  };
-
-  localStorage.setItem('user', JSON.stringify(user));
-  alert("Registro exitoso");
-  router.push('/login');
-};
-</script>
-
 <template>
   <div class="register-container">
     <header>
@@ -34,8 +7,20 @@ const registerUser = () => {
       <h1>Registro</h1>
       <form @submit.prevent="registerUser">
         <div class="input-group">
+          <label for="name">Name</label>
+          <input id="name" v-model="name" type="text" placeholder="Enter your name" required>
+        </div>
+        <div class="input-group">
+          <label for="lastname">Lastname</label>
+          <input id="lastname" v-model="lastname" type="text" placeholder="Enter your lastname" required>
+        </div>
+        <div class="input-group">
           <label for="username">Username</label>
           <input id="username" v-model="username" type="text" placeholder="Enter your username" required>
+        </div>
+        <div class="input-group">
+          <label for="direction">Direction</label>
+          <input id="direction" v-model="direction" type="text" placeholder="Enter your direction" required>
         </div>
         <div class="input-group">
           <label for="password">Password</label>
@@ -51,6 +36,39 @@ const registerUser = () => {
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const name = ref('');
+const lastname = ref('');
+const username = ref('');
+const direction = ref('');
+const password = ref('');
+const confirmPassword = ref('');
+
+const registerUser = () => {
+  if (password.value !== confirmPassword.value) {
+    alert("Las contraseñas no coinciden");
+    return;
+  }
+
+  const user = {
+    name: name.value,
+    lastname: lastname.value,
+    username: username.value,
+    direction: direction.value,
+    password: password.value,
+  };
+
+  localStorage.setItem('user', JSON.stringify(user));
+  alert("Registro exitoso");
+  router.push('/login');
+};
+</script>
 
 <style scoped>
 .register-container {

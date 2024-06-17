@@ -1,27 +1,29 @@
 <script setup>
 import { ref } from 'vue';
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
+
 const router = useRouter();
 
 const navigateToLogin = () => {
   router.push('/login');
 };
+
 // Información de las películas
 const movies = ref([
   {
-    title: "La Piel Mas Temida",
+    title: "M3GAN",
     genre: "Drama",
     duration: "1h 50min",
     rating: "+14",
-    image: "src/public/imagen/movie1.jpeg",
+    image: "src/public/imagen/imagenes_estrenos/megan.jpeg",
     status: "Estreno"
   },
   {
-    title: "Profesion Peligro",
+    title: "Creed III",
     genre: "Acción",
     duration: "1h 55min",
     rating: "+14",
-    image: "ruta_de_la_imagen_2",
+    image: "src/public/imagen/imagenes_estrenos/creed_lll.jpeg",
     status: "Estreno"
   },
   {
@@ -29,34 +31,38 @@ const movies = ref([
     genre: "Anime",
     duration: "2h",
     rating: "+14",
-    image: "ruta_de_la_imagen_3",
+    image: "src/public/imagen/imagenes_estrenos/spy.jpeg",
     status: "Estreno"
   },
   {
-    title: "Arácnidos",
+    title: "Oppenheimer",
     genre: "Terror",
     duration: "1h 50min",
     rating: "+14",
-    image: "ruta_de_la_imagen_4",
+    image: "src/public/imagen/imagenes_estrenos/openhaimer.jpeg",
     status: "Estreno"
   },
   {
-    title: "Contra Todos",
+    title: "Babylon",
     genre: "Ciencia Ficción",
     duration: "2h",
     rating: "+14",
-    image: "ruta_de_la_imagen_5",
+    image: "src/public/imagen/imagenes_estrenos/Babylon.jpeg",
     status: "Estreno"
   },
   {
-    title: "Desafiantes",
+    title: "Women Talking",
     genre: "Drama",
     duration: "2h 10min",
     rating: "+14",
-    image: "ruta_de_la_imagen_6",
+    image: "src/public/imagen/imagenes_estrenos/women_talking.jpeg",
     status: "Estreno"
   }
 ]);
+
+const navigateToBooking = () => {
+  router.push('/booking');
+};
 </script>
 
 <template>
@@ -74,7 +80,7 @@ const movies = ref([
         <div class="details">
           <h4>{{ movie.title }}</h4>
           <p>{{ movie.genre }}, {{ movie.duration }}, {{ movie.rating }}</p>
-          <button>Select</button>
+          <button @click="navigateToBooking">Select</button>
         </div>
         <span class="status">{{ movie.status }}</span>
       </div>

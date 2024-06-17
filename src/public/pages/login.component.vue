@@ -31,17 +31,19 @@ const navigateToRegister = () => {
       <h1>cineplanet</h1>
       <form @submit.prevent="loginUser">
         <div class="input-group">
-          <label for="username">Username</label>
-          <input id="username" v-model="username" type="text" placeholder="Enter your username" required>
+          <label for="username">Nombre de usuario</label>
+          <input id="username" v-model="username" type="text" placeholder="Ingrese su nombre de usuario" required>
         </div>
         <div class="input-group">
-          <label for="password">Password</label>
-          <input id="password" v-model="password" type="password" placeholder="Enter your password" required>
+          <label for="password">Contraseña</label>
+          <input id="password" v-model="password" type="password" placeholder="Ingrese su contraseña" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Iniciar sesión</button>
       </form>
-      <button @click="navigateToRegister" class="register-button">Registrarse</button>
     </div>
+    <footer>
+      <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="footer-logo">
+    </footer>
   </div>
 </template>
 
@@ -52,18 +54,18 @@ const navigateToRegister = () => {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
-header {
+header, footer {
   width: 100%;
   background-color: #042c63;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
-.logo {
+.logo, .footer-logo {
   max-width: 200px;
 }
 
@@ -75,6 +77,7 @@ header {
   text-align: center;
   max-width: 500px;
   width: 100%;
+  margin-top: -20px; /* Ajuste para alinear con el logo del header */
 }
 
 .login-box h1 {
@@ -119,5 +122,3 @@ button:hover {
   background-color: #FF4500;
 }
 </style>
-
-

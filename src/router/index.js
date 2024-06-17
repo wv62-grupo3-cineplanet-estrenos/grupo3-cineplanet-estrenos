@@ -1,7 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
 import LoginComponent from "../../src/public/pages/login.component.vue";
-import MoviesComponent from "../../src/public/pages/Movies.component.vue";
-import RegisterComponent from "../../src/public/pages/Register.component.vue";
+import MoviesComponent from "../public/pages/movies.component.vue";
+import RegisterComponent from "../public/pages/register.component.vue";
+import BookingComponent from "../public/pages/booking.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,7 +12,8 @@ const router = createRouter({
 
         {path: '/salir', redirect: '/login'},
 
-        {path: '/movies', component: MoviesComponent}
+        {path: '/movies', component: MoviesComponent},
+        {path: '/booking', component: BookingComponent }
 
     ]
 });
