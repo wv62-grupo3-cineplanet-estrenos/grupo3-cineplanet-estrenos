@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginComponent from '../../src/public/pages/login.component.vue';
 import MoviesComponent from '../../src/public/pages/movies.component.vue';
 import RegisterComponent from '../../src/public/pages/register.component.vue';
-import BookingComponent from '../../src/public/pages/booking.component.vue'; // Asegúrate de que esta ruta sea correcta
+import BookingComponent from '../../src/public/pages/booking.component.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,8 +11,8 @@ const router = createRouter({
         { path: '/register', component: RegisterComponent },
         { path: '/salir', redirect: '/login' },
         { path: '/movies', component: MoviesComponent },
-        { path: '/booking', component: BookingComponent }, // Añadido para la vista de booking
-        { path: '/', redirect: '/login' }, // Redirigir a login por defecto
+        { path: '/booking', component: BookingComponent },
+        { path: '/', redirect: '/login' },
     ],
 });
 
