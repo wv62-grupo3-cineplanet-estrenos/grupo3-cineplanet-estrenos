@@ -46,7 +46,7 @@ const navigateToRegister = () => {
   </div>
 
   <footer>
-    <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="footer-logo">
+    <img src="https://github.com/wv62-grupo3-cineplanet-estrenos/grupo3-cineplanet-estrenos/blob/main/src/public/imagen/abu5x-q1di4.webp" alt="Cineplanet logo" class="footer-logo">
   </footer>
 </template>
 
