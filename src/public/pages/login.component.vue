@@ -23,10 +23,11 @@ const navigateToRegister = () => {
 </script>
 
 <template>
+  <header>
+    <img src="../imagen/inicio_pagina.png" alt="Cineplanet logo" class="logo">
+  </header>
   <div class="login-container">
-    <header>
-      <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="logo">
-    </header>
+
     <div class="login-box">
       <h1>cineplanet</h1>
       <form @submit.prevent="loginUser">
@@ -41,10 +42,12 @@ const navigateToRegister = () => {
         <button type="submit">Iniciar sesión</button>
       </form>
     </div>
-    <footer>
-      <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="footer-logo">
-    </footer>
+
   </div>
+
+  <footer>
+    <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="footer-logo">
+  </footer>
 </template>
 
 <style scoped>
