@@ -10,16 +10,16 @@
         <img src="../imagen/logo_cine.webp" alt="Cineplanet Logo" class="logo-image">
         <form @submit.prevent="loginUser">
           <div class="input-group">
-            <label for="username">Nombre de usuario</label>
-            <input id="username" v-model="username" type="text" placeholder="Ingrese su nombre de usuario" required>
+            <label for="username">Username</label>
+            <input id="username" v-model="username" type="text" placeholder="Enter your username" required>
           </div>
           <div class="input-group">
-            <label for="password">Contraseña</label>
-            <input id="password" v-model="password" type="password" placeholder="Ingrese su contraseña" required>
+            <label for="password">Password</label>
+            <input id="password" v-model="password" type="password" placeholder="Enter your password" required>
           </div>
-          <button type="submit">Iniciar sesión</button>
+          <button type="submit">Login</button>
         </form>
-        <button @click="navigateToRegister">Registrarse</button>
+        <button @click="navigateToRegister">Register</button>
       </div>
     </div>
     <footer class="image-footer">
@@ -96,7 +96,7 @@ header.image-header, footer.image-footer {
 
 .header-content, .footer-content {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto; /* Centrar el contenido */
 }
 
@@ -169,6 +169,7 @@ button {
 }
 
 button:hover {
-  background-color: #FF4500;
+  box-shadow: inset 0 0 0 4px rgb(12, 248, 248); /* Borde interno celeste */
+  transform: scale(0.98); /* Reducir ligeramente el tamaño */
 }
 </style>
