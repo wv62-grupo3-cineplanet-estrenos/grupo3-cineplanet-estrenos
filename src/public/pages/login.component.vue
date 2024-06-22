@@ -1,11 +1,13 @@
 <template>
   <div class="page-container">
     <header class="image-header">
-      <img src="../imagen/inicio_pagina.webp" alt="Initial Image" class="initial-image">
+      <div class="header-content">
+        <img src="../imagen/inicio_pagina.webp" alt="Initial Image" class="initial-image">
+      </div>
     </header>
     <div class="login-container">
       <div class="login-box">
-        <h1>Cineplanet</h1>
+        <img src="../imagen/logo_cine.webp" alt="Cineplanet Logo" class="logo-image">
         <form @submit.prevent="loginUser">
           <div class="input-group">
             <label for="username">Nombre de usuario</label>
@@ -21,7 +23,9 @@
       </div>
     </div>
     <footer class="image-footer">
-      <img src="../imagen/fin_pagina.webp" alt="Final Image" class="final-image">
+      <div class="footer-content">
+        <img src="../imagen/fin_pagina.webp" alt="Final Image" class="final-image">
+      </div>
     </footer>
   </div>
 </template>
@@ -71,6 +75,7 @@ const navigateToRegister = () => {
   width: 100%;
   height: 100%;
   overflow: hidden; /* Evitar el scroll */
+  background-color: #042c63; /* Color azul de fondo */
 }
 
 html, body {
@@ -89,11 +94,19 @@ header.image-header, footer.image-footer {
   background: none;
 }
 
-.initial-image, .final-image {
+.header-content, .footer-content {
   width: 100%;
   max-width: 1400px;
-  max-height: 140px;
+  margin: 0 auto; /* Centrar el contenido */
+}
+
+.initial-image, .final-image {
+  width: 100%;
   height: auto;
+}
+
+.logo-image {
+  max-width: 360px; /* Ajusta el tamaño máximo del logo según tu diseño */
 }
 
 .login-container {
@@ -120,6 +133,7 @@ header.image-header, footer.image-footer {
   margin-bottom: 30px;
   font-size: 2.5em;
   color: #042c63;
+  display: none; /* Oculta el h1 si usas un logo de imagen */
 }
 
 .input-group {
