@@ -33,14 +33,13 @@
         <button type="submit">Register</button>
       </form>
     </div>
-    <Notification v-if="notification.message" :message="notification.message" :type="notification.type" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import Notification from '../pages/notification.component.vue';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
+import Swal from 'sweetalert2';
 
 const router = useRouter();
 
@@ -51,11 +50,14 @@ const direction = ref('');
 const password = ref('');
 const confirmPassword = ref('');
 
-const notification = ref({ message: '', type: 'success' });
-
 const registerUser = () => {
   if (password.value !== confirmPassword.value) {
-    notification.value = { message: 'Las contraseñas no coinciden', type: 'error' };
+    Swal.fire({
+      title: 'Error',
+      text: 'Las contraseñas no coinciden',
+      icon: 'error',
+      confirmButtonText: 'Aceptar'
+    });
     return;
   }
 
@@ -68,11 +70,15 @@ const registerUser = () => {
   };
 
   localStorage.setItem('user', JSON.stringify(user));
-  notification.value = { message: 'Registro exitoso', type: 'success' };
 
-  setTimeout(() => {
+  Swal.fire({
+    title: 'Registro exitoso',
+    text: '¡Bienvenido a Cineplanet!',
+    icon: 'success',
+    confirmButtonText: 'Aceptar'
+  }).then(() => {
     router.push('/login');
-  }, 1000); // Espera 1 segundos antes de redirigir
+  });
 };
 </script>
 
