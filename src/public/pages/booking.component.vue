@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 
 const router = useRouter();
 
@@ -10,6 +10,10 @@ const dni = ref('');
 
 const navigateToMovies = () => {
   router.push('/movies');
+};
+
+const navigateToBetterOptions = () => {
+  router.push('/better_option'); // Navega a la ruta '/better-options' al hacer clic en "Better Options"
 };
 </script>
 
@@ -30,14 +34,14 @@ const navigateToMovies = () => {
           <input type="number" id="seats" v-model="seats" min="1" placeholder="Example: 2">
         </div>
         <div class="form-group">
-          <label for="dni">Confirma su DNI</label>
+          <label for="dni">Confirm your ID</label>
           <input type="text" id="dni" v-model="dni" placeholder="XXXXXXXXX">
         </div>
-        <pv-button type="button">Better Options</pv-button>
-        <pv-button type="button">Preference Options</pv-button>
+        <button type="button" @click="navigateToBetterOptions">Better Options</button>
+        <button type="button">Preference Options</button>
         <div class="form-actions">
-          <pv-button type="submit">Confirm</pv-button>
-          <pv-button type="button" @click="navigateToMovies">Back</pv-button>
+          <button type="submit">Confirm</button>
+          <button type="button" @click="navigateToMovies">Back</button>
         </div>
       </form>
     </div>
@@ -46,7 +50,6 @@ const navigateToMovies = () => {
     </footer>
   </div>
 </template>
-
 
 <style scoped>
 .booking-container {

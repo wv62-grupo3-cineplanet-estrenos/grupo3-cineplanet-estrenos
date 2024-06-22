@@ -4,6 +4,7 @@ import MoviesComponent from '../../src/public/pages/movies.component.vue';
 import RegisterComponent from '../../src/public/pages/register.component.vue';
 //import BookingComponent from '../../src/public/pages/booking.component.vue';
 import BookAMovieComponent from "../cineplanet/pages/BookAMovie.component.vue";
+import BetterOptionsComponent from "../../src/public/pages/better_opcion.component.vue"; // Importa el componente de Better Options
 
 const router = createRouter({
     history: createWebHistory(),
@@ -14,6 +15,8 @@ const router = createRouter({
         { path: '/movies', component: MoviesComponent, name: 'movies'  },
        // { path: '/booking', component: BookingComponent },
         { path: '/booking', component: BookAMovieComponent},
+        { path: '/better-options', component: BetterOptionsComponent }, // Ruta para Better Options
+
         { path: '/', redirect: '/login' },
 
 
