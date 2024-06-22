@@ -1,6 +1,34 @@
+<template>
+  <div>
+    <header class="image-header">
+      <img src="../imagen/inicio_pagina.webp" alt="Initial Image" class="initial-image">
+    </header>
+    <div class="login-container">
+      <div class="login-box">
+        <h1>cineplanet</h1>
+        <form @submit.prevent="loginUser">
+          <div class="input-group">
+            <label for="username">Nombre de usuario</label>
+            <input id="username" v-model="username" type="text" placeholder="Ingrese su nombre de usuario" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Contraseña</label>
+            <input id="password" v-model="password" type="password" placeholder="Ingrese su contraseña" required>
+          </div>
+          <button type="submit">Iniciar sesión</button>
+        </form>
+        <button @click="navigateToRegister">Registrarse</button>
+      </div>
+    </div>
+    <footer class="image-footer">
+      <img src="../imagen/fin_pagina.webp" alt="Final image" class="finali-image">
+    </footer>
+  </div>
+</template>
+
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 
 const router = useRouter();
 
@@ -22,54 +50,28 @@ const navigateToRegister = () => {
 };
 </script>
 
-<template>
-  <header>
-    <img src="../imagen/inicio_pagina.png" alt="Cineplanet logo" class="logo">
-  </header>
-  <div class="login-container">
-
-    <div class="login-box">
-      <h1>cineplanet</h1>
-      <form @submit.prevent="loginUser">
-        <div class="input-group">
-          <label for="username">Nombre de usuario</label>
-          <input id="username" v-model="username" type="text" placeholder="Ingrese su nombre de usuario" required>
-        </div>
-        <div class="input-group">
-          <label for="password">Contraseña</label>
-          <input id="password" v-model="password" type="password" placeholder="Ingrese su contraseña" required>
-        </div>
-        <button type="submit">Iniciar sesión</button>
-      </form>
-    </div>
-
-  </div>
-
-  <footer>
-    <img src="../imagen/imagen_logo.jpg" alt="Cineplanet logo" class="footer-logo">
-  </footer>
-</template>
-
 <style scoped>
+header.image-header, footer.image-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative; /* Para manejar la posición de las imágenes */
+  padding: 20px 0; /* Ajuste de padding si es necesario */
+  background: none; /* Remueve el color de fondo */
+}
+
+.initial-image {
+  width: 100%;
+  height: auto;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 160px); /* Altura total menos el espacio ocupado por header y footer */
   background-color: #fff;
-}
-
-header, footer {
-  width: 100%;
-  background-color: #042c63;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-}
-
-.logo, .footer-logo {
-  max-width: 200px;
 }
 
 .login-box {
@@ -123,5 +125,9 @@ button {
 
 button:hover {
   background-color: #FF4500;
+}
+
+.footer-logo {
+  max-width: 200px;
 }
 </style>

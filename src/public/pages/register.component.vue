@@ -28,18 +28,19 @@
         </div>
         <div class="input-group">
           <label for="confirmPassword">Confirm Password</label>
-          <input id="confirmPassword" v-model="confirmPassword" type="password" placeholder="Confirm your password"
-                 required>
+          <input id="confirmPassword" v-model="confirmPassword" type="password" placeholder="Confirm your password" required>
         </div>
         <button type="submit">Register</button>
       </form>
     </div>
+    <Notification v-if="notification.message" :message="notification.message" :type="notification.type" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import Notification from '../pages/notification.component.vue';
 
 const router = useRouter();
 
@@ -50,9 +51,11 @@ const direction = ref('');
 const password = ref('');
 const confirmPassword = ref('');
 
+const notification = ref({ message: '', type: 'success' });
+
 const registerUser = () => {
   if (password.value !== confirmPassword.value) {
-    alert("Las contraseñas no coinciden");
+    notification.value = { message: 'Las contraseñas no coinciden', type: 'error' };
     return;
   }
 
@@ -65,8 +68,11 @@ const registerUser = () => {
   };
 
   localStorage.setItem('user', JSON.stringify(user));
-  alert("Registro exitoso");
-  router.push('/login');
+  notification.value = { message: 'Registro exitoso', type: 'success' };
+
+  setTimeout(() => {
+    router.push('/login');
+  }, 1000); // Espera 1 segundos antes de redirigir
 };
 </script>
 
