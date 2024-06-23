@@ -34,7 +34,7 @@
     </div>
 
     <footer style="padding-top: 5%;">
-      <img src="../../public/imagen/fin_pagina.webp" alt="Footer image" width="100%" />
+      <img src="../../public/imagen/fin_pagina.webp" alt="Footer image" width="1435" />
     </footer>
   </div>
 </template>
@@ -111,10 +111,6 @@ header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-}
-
-.p-button {
-  width: 48%;
 }
 
 .p-button-success {
