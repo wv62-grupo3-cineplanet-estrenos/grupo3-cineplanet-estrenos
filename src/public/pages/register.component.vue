@@ -29,10 +29,6 @@
             <label for="password">Password</label>
             <input id="password" v-model="password" type="password" placeholder="Enter your password" required>
           </div>
-          <div class="input-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input id="confirmPassword" v-model="confirmPassword" type="password" placeholder="Confirm your password" required>
-          </div>
           <button type="submit">Register</button>
         </form>
         <button type="button" @click="goToLogin">Go to Login</button>
@@ -42,7 +38,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 
@@ -53,19 +49,8 @@ const lastname = ref('');
 const username = ref('');
 const direction = ref('');
 const password = ref('');
-const confirmPassword = ref('');
 
 const registerUser = () => {
-  if (password.value !== confirmPassword.value) {
-    Swal.fire({
-      title: 'Error',
-      text: 'Las contraseñas no coinciden',
-      icon: 'error',
-      confirmButtonText: 'Aceptar'
-    });
-    return;
-  }
-
   const user = {
     name: name.value,
     lastname: lastname.value,
@@ -89,14 +74,6 @@ const registerUser = () => {
 const goToLogin = () => {
   router.push('/login');
 };
-
-onMounted(() => {
-  document.body.classList.add('no-scroll');
-});
-
-onUnmounted(() => {
-  document.body.classList.remove('no-scroll');
-});
 </script>
 
 <style scoped>
@@ -157,9 +134,11 @@ header.image-header {
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 500px;
+  max-width: 500px; /* Permitir ajustar el ancho del contenedor */
   width: 100%;
-  margin-top: -20px;
+  height: 800px; /* Permitir ajustar la altura del contenedor */
+  box-sizing: border-box; /* Incluir el padding dentro del tamaño del contenedor */
+
 }
 
 .register-box h1 {
@@ -208,11 +187,11 @@ button:hover {
 
 button[type="button"] {
   margin-top: 10px;
-  background-color: #4682B4;
+  background-color: #fd6246;
 }
 
 button[type="button"]:hover {
-  background-color: #4169E1;
+  background-color: #fd6246;
 }
 
 /* Disable scrolling */
