@@ -194,11 +194,6 @@ button[type="button"]:hover {
   background-color: #fd6246;
 }
 
-/* Disable scrolling */
-.no-scroll {
-  overflow: hidden;
-}
-
 body.no-scroll {
   overflow: hidden;
 }
