@@ -1,85 +1,85 @@
-<script>
-import {ref} from "vue";
-import router from "../../router/index.js";
+<template>
+  <div>
+    <header>
+      <h1>Cineplanet</h1>
+      <p>Bienvenido a la reserva rápida de película</p>
+      <button type="button" @click="navigateToLogin" style="color: white;">Salir</button>
+    </header>
 
-export default {
-  name: "BookAMovie",
-  setup() {
-    const formData = ref({
-      date: null,
-      seats: '',
-      dni: ''
-    });
-    const selectedOption = ref('');
+    <div class="booking-container">
+      <div class="p-col-12 p-md-6">
+        <h1>Booking</h1>
+        <form @submit.prevent="submitForm" class="booking-form">
+          <pv-calendar v-model="formData.date" dateFormat="dd/mm/yy" inputId="date" class="input-field" />
+          <pv-input-text v-model="formData.seats" placeholder="Número de asientos" inputId="seats" class="input-field" />
+          <pv-input-text v-model="formData.dni" placeholder="Confirma tu DNI" inputId="dni" class="input-field" />
 
-    const submitForm = () => {
-      console.log("Submitting form with:", formData.value);
+          <div class="button-row">
+            <pv-button label="Better Options"
+                       class="p-button-outlined"
+                       :class="{ 'p-button-secondary': selectedOption === 'better' }"
+                       @click="selectOption('better')" />
+            <pv-button label="Preference Options"
+                       class="p-button-outlined"
+                       :class="{ 'p-button-secondary': selectedOption === 'preference' }"
+                       @click="selectOption('preference')" />
+          </div>
 
-      if (selectedOption.value === 'better') {
-        console.log("Navigating to better options route...");
-        // router.push('/better-route');
-      } else if (selectedOption.value === 'preference') {
-        console.log("Navigating to preference options route...");
-        // router.push('/preference-route');
-      }
-    };
+          <div class="button-row">
+            <pv-button label="Confirmar" type="submit" class="p-button-success" />
+            <pv-button label="Volver" class="p-button-secondary" @click="goBack" />
+          </div>
+        </form>
+      </div>
+    </div>
 
-    const selectOption = (option) => {
-      selectedOption.value = option;
-    };
+    <footer style="padding-top: 5%;">
+      <img src="../../public/imagen/fin_pagina.webp" alt="Footer image" width="100%" />
+    </footer>
+  </div>
+</template>
 
-    const goBack = () => {
-      console.log("Going back...");
-      router.push({name: 'movies'});
-    };
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-    return { formData, selectedOption, submitForm, selectOption, goBack };
+const router = useRouter();
+
+const formData = ref({
+  date: null,
+  seats: '',
+  dni: ''
+});
+
+const selectedOption = ref('');
+
+const submitForm = () => {
+  console.log("Submitting form with:", formData.value);
+
+  if (selectedOption.value === 'better') {
+    console.log("Navigating to better options route...");
+    router.push('/better');
+  } else if (selectedOption.value === 'preference') {
+    console.log("Navigating to preference options route...");
+    router.push('/preference');
   }
+};
+
+const selectOption = (option) => {
+  selectedOption.value = option;
+};
+
+const goBack = () => {
+  console.log("Going back...");
+  router.push({name: 'movies'}); // Navega usando el nombre de la ruta
+};
+
+const navigateToLogin = () => {
+  router.push('/login');
 };
 </script>
 
-<template>
-
-  <header style="margin-bottom: 5%">
-    <h1>Cineplanet</h1>
-    <p>Bienvenido a la reserva rapida de pelicula</p>
-    <button type="button" @click="navigateToLogin" style="color:white">salir</button>
-  </header>
-
-  <div class="booking-container">
-    <div class="p-col-12 p-md-6">
-      <h1>Booking</h1>
-      <form @submit.prevent="submitForm" class="booking-form">
-        <pv-calendar v-model="formData.date" dateFormat="dd/mm/yy" inputId="date" class="input-field" />
-
-        <pv-input-text v-model="formData.seats" placeholder="Number of seats" inputId="seats" class="input-field"/>
-        <pv-input-text v-model="formData.dni" placeholder="Confirm your DNI" inputId="dni" class="input-field"/>
-
-        <div class="button-row">
-          <pv-button label="Better Options"
-                    class="p-button-outlined"
-                    :class="{ 'p-button-secondary': selectedOption === 'better' }"
-                    @click="selectOption('better')" />
-          <pv-button label="Preference Options"
-                    class="p-button-outlined"
-                    :class="{ 'p-button-secondary': selectedOption === 'preference' }"
-                    @click="selectOption('preference')" />
-        </div>
-
-        <div class="button-row">
-        <pv-button label="Confirm" type="submit" class="p-button-success"/>
-        <pv-button label="Back" class="p-button-secondary" @click="goBack" />
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <footer style="padding-top: 5% ">
-    <img src="../../public/imagen/final_pagina.png" alt="Footer image" width="100%">
-  </footer>
-</template>
-
-<style>
+<style scoped>
 header {
   display: flex;
   justify-content: space-between;
@@ -95,7 +95,7 @@ header {
   padding: 20px;
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .booking-form {
@@ -120,6 +120,4 @@ header {
 .p-button-success {
   background-color: green;
 }
-
-
 </style>

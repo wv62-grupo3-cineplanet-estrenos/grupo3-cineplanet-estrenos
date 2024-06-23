@@ -13,14 +13,19 @@ const navigateToMovies = () => {
 };
 
 const navigateToBetterOptions = () => {
-  router.push('/better_option'); // Navega a la ruta '/better-options' al hacer clic en "Better Options"
+  router.push('/better-options'); // Navega a la ruta '/better-options' al hacer clic en "Better Options"
 };
+
+const navigateToPreferenceOptions = () => {
+  router.push('/preference-options');
+};
+
 </script>
 
 <template>
   <div class="booking-container">
     <header>
-      <img src="../imagen/inicio_pagina.png" alt="Header image">
+      <img :src="'../public/imagen/inicio_pagina.webp'" alt="Header image">
     </header>
     <div class="booking-form">
       <h1>Booking</h1>
@@ -38,7 +43,7 @@ const navigateToBetterOptions = () => {
           <input type="text" id="dni" v-model="dni" placeholder="XXXXXXXXX">
         </div>
         <button type="button" @click="navigateToBetterOptions">Better Options</button>
-        <button type="button">Preference Options</button>
+        <button type="button" @click="navigateToPreferenceOptions">Preference Options</button>
         <div class="form-actions">
           <button type="submit">Confirm</button>
           <button type="button" @click="navigateToMovies">Back</button>

@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginComponent from '../../src/public/pages/login.component.vue';
 import MoviesComponent from '../../src/public/pages/movies.component.vue';
 import RegisterComponent from '../../src/public/pages/register.component.vue';
-//import BookingComponent from '../../src/public/pages/booking.component.vue';
 import BookAMovieComponent from "../cineplanet/pages/BookAMovie.component.vue";
-import BetterOptionsComponent from "../../src/public/pages/better_opcion.component.vue"; // Importa el componente de Better Options
+import BetterOptionsComponent from "../cineplanet/pages/BetterOption.component.vue";
+import PreferenceComponent from "../cineplanet/pages/PreferenceOption.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -12,14 +12,12 @@ const router = createRouter({
         { path: '/login', component: LoginComponent },
         { path: '/register', component: RegisterComponent },
         { path: '/salir', redirect: '/login' },
-        { path: '/movies', component: MoviesComponent, name: 'movies'  },
-       // { path: '/booking', component: BookingComponent },
-        { path: '/booking', component: BookAMovieComponent},
-        { path: '/better-options', component: BetterOptionsComponent }, // Ruta para Better Options
+        { path: '/movies', component: MoviesComponent, name: 'movies' },
+        { path: '/booking', component: BookAMovieComponent },
+        { path: '/better', component: BetterOptionsComponent },
+        { path: '/preference', component: PreferenceComponent },
 
-        { path: '/', redirect: '/login' },
-
-
+        { path: '/', redirect: '/login' }, // Redirige a '/login' por defecto
     ],
 });
 
