@@ -75,7 +75,7 @@ const navigateToRegister = () => {
   width: 100%;
   height: 100%;
   overflow: hidden; /* Evitar el scroll */
-  background-color: #042c63; /* Color azul de fondo */
+  background-color: #042c60; /* Color azul de fondo */
 }
 
 html, body {
