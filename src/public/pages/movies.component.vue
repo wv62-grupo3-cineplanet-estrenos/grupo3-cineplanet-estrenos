@@ -24,6 +24,7 @@ const ubicaciones = ref([
 ]);
 const ubicacionSeleccionada = ref(ubicaciones.value[0]);
 const mostrarDesplegable = ref(false);
+const nuevaUbicacion = ref('');
 
 const selectMovie = () => {
   router.push('/booking');
@@ -38,21 +39,29 @@ const cambiarUbicacion = (ubicacion) => {
   mostrarDesplegable.value = false;
 };
 
+const agregarUbicacion = () => {
+  if (nuevaUbicacion.value.trim() !== '') {
+    ubicaciones.value.push(nuevaUbicacion.value.trim());
+    cambiarUbicacion(nuevaUbicacion.value.trim());
+    nuevaUbicacion.value = '';
+  }
+};
+
 const peliculas = ref([
   { title: 'M3GAN', genre: 'Drama', duration: '1h 50min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/megan.webp', status: 'Estreno' },
   { title: 'Creed III', genre: 'Acción', duration: '1h 55min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/creed_lll.webp', status: 'Estreno' },
-  { title: 'Spy X Family Codigo: Blanco', genre: 'Anime', duration: '2h', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/spy.webp', status: 'Estreno' },
+  { title: 'Barbie', genre: 'Infantil', duration: '1h 30min', rating: '+6', image: 'src/public/imagen/imagen_estreno_web/barbie.webp', status: 'Estreno' },
   { title: 'Oppenheimer', genre: 'Terror', duration: '1h 50min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/openhaimer.webp', status: 'Estreno' },
   { title: 'Babylon', genre: 'Ciencia Ficción', duration: '2h', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/babylon.webp', status: 'Estreno' },
   { title: 'Women Talking', genre: 'Drama', duration: '2h 10min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/women_talking_1.webp', status: 'Estreno' },
   { title: 'Ant-Man and the Wasp: Quantumania', genre: 'Acción', duration: '2h 10min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/ant-man.webp', status: 'Estreno' },
   { title: 'Cocaine Bear', genre: 'Comedia', duration: '1h 35min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/cocaine_bear.webp', status: 'Estreno' },
-  { title: 'Wonka', genre: 'Fantasía', duration: '2h', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/wonka.webp', status: 'Estreno' },
+  { title: 'Wonka', genre: 'Fantasía', duration: '2h', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/wonka_1.webp', status: 'Estreno' },
   { title: 'The Marvels', genre: 'Acción', duration: '2h 5min', rating: '+14', image: 'src/public/imagen/imagen_estreno_web/the_marvels.webp', status: 'Estreno' }
 ]);
 
 const currentStartIndex = ref(0);
-const maxVisible = 10;
+const maxVisible = 5;
 
 const nextMovies = () => {
   if (currentStartIndex.value + maxVisible < peliculas.value.length) {
@@ -74,16 +83,13 @@ const prevMovies = () => {
         <img src="../imagen/inicio_pagina.webp" alt="Initial Image" class="initial-image">
       </div>
     </header>
-    <div class="container-movies">
-
+    <div class="main-content"> <!-- Div que aplica fondo blanco -->
       <div class="welcome-message">
-        <p>Welcome {{ username }}</p>
+        <p>Bienvenido {{ username }}</p>
       </div>
-
       <div class="logout-button">
-        <button type="button" @click="navigateToLogin">Excit</button>
+        <button type="button" @click="navigateToLogin">Salir</button>
       </div>
-
       <div class="ubicacion">
         <span>{{ ubicacionSeleccionada }}</span>
         <button class="dropdown-btn" @click="toggleDesplegable">▼</button>
@@ -93,12 +99,16 @@ const prevMovies = () => {
               {{ ubicacion }}
             </li>
           </ul>
+          <div class="agregar-ubicacion">
+            <input type="text" v-model="nuevaUbicacion" placeholder="Agregar nueva ubicación">
+            <button @click="agregarUbicacion">Agregar</button>
+          </div>
         </div>
       </div>
       <h3>Películas</h3>
       <div class="carousel">
         <button @click="prevMovies" :disabled="currentStartIndex === 0">⬅️</button>
-        <div class="carousel-inner">
+        <div class="carousel-inner" :class="{ 'horizontal-align': peliculas.length > maxVisible }">
           <div class="movie" v-for="(movie, index) in peliculas.slice(currentStartIndex, currentStartIndex + maxVisible)" :key="movie.title">
             <img :src="movie.image" :alt="movie.title">
             <div class="movie-details">
@@ -107,7 +117,6 @@ const prevMovies = () => {
               <span class="status">{{ movie.status }}</span>
             </div>
             <button class="select-btn" @click="selectMovie">Seleccionar</button>
-
           </div>
         </div>
         <button @click="nextMovies" :disabled="currentStartIndex + maxVisible >= peliculas.length">➡️</button>
@@ -116,8 +125,8 @@ const prevMovies = () => {
   </div>
 </template>
 
-<style scoped>
 
+<style scoped>
 .container {
   position: fixed;
   top: 0;
@@ -128,8 +137,7 @@ const prevMovies = () => {
   background-color: #042c60; /* Color azul de fondo */
 }
 
-
-header.image-header {
+.image-header {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -150,20 +158,23 @@ header.image-header {
   border-radius: 5px;
 }
 
-.welcome-message {
-  position: absolute;
-  top: 150px; /* Ajusta la posición vertical según sea necesario */
-  left: 52%; /* Centra horizontalmente */
-  transform: translateX(-50%); /* Corrige el centrado */
-  text-align: center;
-  font-size: 3em; /* Tamaño de fuente deseado */
+.main-content {
+  background-color: white; /* Fondo blanco para el contenido principal */
+  padding: 20px;
 }
 
+.welcome-message {
+  text-align: center;
+  font-size: 2.5em; /* Tamaño de fuente deseado */
+  color: #000000; /* Mantener el color de texto */
+  margin-top: -40px; /* Espacio superior */
+  margin-bottom: -40px; /* Reducir espacio debajo del mensaje */
+}
 
 .logout-button {
-  position: absolute;
-  top: 210px; /* Ajusta la posición vertical según sea necesario */
-  right: 30px; /* Ajusta la posición horizontal según sea necesario */
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
 .logout-button button {
@@ -184,6 +195,7 @@ header.image-header {
 .ubicacion span {
   font-size: 1.2em;
   margin-right: 10px;
+  color: #042c60;
 }
 
 .dropdown-btn {
@@ -215,69 +227,93 @@ header.image-header {
 }
 
 .dropdown li:hover {
-  background-color: #f0f0f0;
+  background-color: #ddd;
+}
+
+.agregar-ubicacion {
+  display: flex;
+  padding: 10px;
+}
+
+.agregar-ubicacion input {
+  flex: 1;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.agregar-ubicacion button {
+  padding: 5px;
 }
 
 .carousel {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .carousel-inner {
   display: flex;
   overflow: hidden;
-  width: calc(100% - 80px); /* Espacio para los botones */
+  max-width: 90%;
+  justify-content: space-around; /* Alineación horizontal de los botones */
+
 }
+
+.carousel-inner.horizontal-align {
+  display: flex;
+  overflow: hidden;
+  max-width: 90%;
+  justify-content: space-around; /* Alineación horizontal de los botones */
+}
+
 
 .movie {
   flex: 0 0 auto;
   margin: 0 10px;
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  padding: 10px;
 }
 
 .movie img {
-  width: 100px;
-  height: auto;
+  width: 100%;
+  height: 200px ;
+  object-fit: cover;
   border-radius: 5px;
 }
 
 .movie-details {
-  margin-top: 10px;
+  margin: 10px 0;
+  color: #042c60; /* Mantener el color de texto */
 }
 
 .status {
-  background-color: red;
-  color: white;
-  padding: 2px 5px;
-  border-radius: 5px;
+  color: #000000;
 }
 
 .select-btn {
   background-color: #FF6347;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
 }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.carousel button {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
-button:not(:disabled) {
-  transition: transform 0.2s;
-}
-
-button:not(:disabled):hover {
-  transform: scale(1.1);
+.carousel button:disabled {
+  color: gray;
 }
 </style>
+
+
 
 
