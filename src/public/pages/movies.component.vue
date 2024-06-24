@@ -122,8 +122,14 @@ const prevMovies = () => {
         <button @click="nextMovies" :disabled="currentStartIndex + maxVisible >= peliculas.length">➡️</button>
       </div>
     </div>
+
+    <!-- Sección final con fondo celeste -->
+    <div class="final-content" style="background-color: #ffffff; height: 200px;">
+      <!-- Contenido de la sección final aquí -->
+    </div>
   </div>
 </template>
+
 
 
 <style scoped>
@@ -232,7 +238,7 @@ const prevMovies = () => {
 
 .agregar-ubicacion {
   display: flex;
-  padding: 10px;
+  padding: 20px;
 }
 
 .agregar-ubicacion input {
@@ -253,6 +259,7 @@ const prevMovies = () => {
 
 .carousel-inner {
   display: flex;
+  flex-wrap: wrap; /* Permitir que las películas se envuelvan en múltiples líneas */
   overflow: hidden;
   max-width: 90%;
   justify-content: space-around; /* Alineación horizontal de los botones */
@@ -268,17 +275,21 @@ const prevMovies = () => {
 
 
 .movie {
-  flex: 0 0 auto;
+  flex: 0 0 calc(20% - 20px); /* Ajustar el ancho de cada película */
   margin: 0 10px;
   text-align: center;
+  display: flex; /* Hacer que los elementos dentro de .movie se alineen verticalmente */
+  flex-direction: column; /* Alinear los elementos de forma vertical */
 }
 
 .movie img {
   width: 100%;
-  height: 200px ;
+  height: auto; /* Cambiar la altura de la imagen a automática para mantener la proporción */
   object-fit: cover;
   border-radius: 5px;
+  margin-bottom: 10px; /* Agregar margen inferior para separar la imagen del botón */
 }
+
 
 .movie-details {
   margin: 10px 0;
@@ -293,7 +304,7 @@ const prevMovies = () => {
   background-color: #FF6347;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px; /* Reducir el padding para disminuir el espacio */
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
@@ -309,11 +320,19 @@ const prevMovies = () => {
   margin-top: 10px;
 }
 
+.final-content {
+  background-color: #ffffff; /* Fondo celeste */
+  padding: 20px;
+  margin-top: 0; /* Agrega margen superior para separar el contenido superior */
+}
+
+.main-content {
+  background-color: white; /* Fondo blanco para el contenido principal */
+  padding: 10px;
+  margin-top: 10px; /* Agrega margen superior para separar el contenido superior */
+}
+
 .carousel button:disabled {
   color: gray;
 }
 </style>
-
-
-
-
