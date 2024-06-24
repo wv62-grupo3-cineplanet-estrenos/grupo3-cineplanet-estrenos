@@ -3,8 +3,8 @@ import LoginComponent from '../../src/public/pages/login.component.vue';
 import MoviesComponent from '../../src/public/pages/movies.component.vue';
 import RegisterComponent from '../../src/public/pages/register.component.vue';
 import BookAMovieComponent from "../cineplanet/pages/BookAMovie.component.vue";
-import BetterOptionsComponent from "../cineplanet/pages/BetterOption.component.vue";
-import PreferenceComponent from "../cineplanet/pages/PreferenceOption.component.vue";
+import BetterOptionsComponent from "../public/pages/better_opcion.component.vue";
+import PreferenceComponent from "../public/pages/preference.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
